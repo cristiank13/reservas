@@ -27,7 +27,9 @@ switch ($request_method) {
 
 
 if (!empty($parametros["metodo"]) && !empty($parametros["clase"])) {
+    local_autoload('GeneralController');
     local_autoload($parametros["clase"]);
+    
 
     $clase  = new $parametros["clase"]();
     $metodo = $parametros["metodo"];
@@ -41,7 +43,7 @@ if (!empty($parametros["metodo"]) && !empty($parametros["clase"])) {
 function local_autoload($class_name)
 {
     $filename = str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . '.php';
-
+    
     if (file_exists($filename)) {
         require_once $filename;
         return true;

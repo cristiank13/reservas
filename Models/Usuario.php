@@ -19,8 +19,14 @@ class Usuario extends Model
 
 }
 
+/*
+$u = new Usuario();
 
-/*$u = new Usuario(58);
+$total = $u->getTodos();
+print_r($total[1]);
+
+
+/*
 $u->setatributos([
     'login' => '32423',
     'clave' => '43534',

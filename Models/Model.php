@@ -7,7 +7,7 @@ use Conexion;
 
 require_once('../Controllers/Conexion.php');
 
-class Model 
+class Model
 {
     public $clase;
     public $tabla;
@@ -21,28 +21,26 @@ class Model
     }
 
     public function getatributos($id = null)
-    {   
+    {
         $Conn = new Conexion();
         $pdo = $Conn->getPdo();
 
-        if ((int)$id) {    
+        if ((int)$id) {
             $atributos = [];
 
             $campoId = $this->clase::ID;
             $consulta = $pdo->prepare("SELECT * FROM $this->tabla WHERE $campoId=$id");
 
             $consulta->execute();
-            
+
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-            
+
             foreach ($resultados as $llave) {
                 foreach ($llave as $attr => $valor) {
                     $atributos[$attr] = $valor;
-                }           
+                }
             }
-            
-
-        }else{
+        } else {
 
             $sql = "SHOW COLUMNS FROM $this->tabla";
             $resultado = $pdo->query($sql);
@@ -57,42 +55,60 @@ class Model
         return $atributos;
     }
 
+    public function getTodos()
+    {
+        $Conn = new Conexion();
+        $pdo = $Conn->getPdo();
+
+        $consulta = $pdo->prepare("SELECT * FROM $this->tabla");
+
+        $consulta->execute();
+
+        $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultados;
+    }
+
     public function setatributos(array $atributos)
-    {  
-        foreach($atributos as $llave => $valor){
+    {
+        foreach ($atributos as $llave => $valor) {
             $this->atributos[$llave] = $valor;
         }
     }
 
     private function deleteAttrPrivate(array $atributos)
-    {   
+    {
         $privados = $this->clase::dataPrivate();
-        foreach($privados as $llave){
+        foreach ($privados as $llave) {
             unset($atributos[$llave]);
         }
 
         return $atributos;
-        
     }
 
     public function save()
     {
-        try{
+        try {
             $atributos = $this->atributos;
+            $atributosOriginales = $this->getatributos();
             $campos = [];
             $referencia = [];
             $valores = [];
 
-            if(!empty($atributos)){
+            if (!empty($atributos)) {
                 unset($atributos[$this->clase::ID]);
 
-                foreach($atributos as $llave => $valor){
-                    if(empty($valor)){
+                foreach ($atributos as $llave => $valor) {
+                    if (!array_key_exists($llave, $atributosOriginales)) {
                         unset($atributos[$llave]);
                     } else {
-                        $campos[] = $llave;
-                        $referencia[] = '?';
-                        $valores[] = $valor;
+                        if (empty($valor)) {
+                            unset($atributos[$llave]);
+                        } else {
+                            $campos[] = $llave;
+                            $referencia[] = '?';
+                            $valores[] = $valor;
+                        }
                     }
                 }
 
@@ -107,43 +123,55 @@ class Model
                 $sql = "INSERT INTO $tabla ($sqlCampos) VALUES ($sqlReferencia)";
                 $stmt = $pdo->prepare($sql);
                 $this->typeElementQuery($atributos, $stmt);
-        
+
                 $stmt->execute();
-               
+
+                $errorInfo = $stmt->errorInfo();
+                if ($errorInfo[0] !== "00000") {
+                    echo "Error al ejecutar la sentencia: " . $errorInfo[2];
+                    die();
+                }
+
                 return $pdo->lastInsertId();
-
             }
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage(), 500);
         }
     }
 
     public function update()
     {
-        try{
+        try {
             $atributosModificados = $this->atributos;
+            $atributosOriginales = $this->getatributos();
 
-            if(!empty($atributosModificados)){
+            if (!empty($atributosModificados)) {
                 $atributos = [];
                 $campos = [];
                 $valores = [];
-                $retorno = 0;
 
                 $id = $atributosModificados[$this->clase::ID];
 
                 $AtributosIniciales = $this->getatributos($id);
 
                 //retorna solo los valores modificados
-                foreach($atributosModificados as $llave => $valor){
-                    if($atributosModificados[$llave] !== $AtributosIniciales[$llave]){
-                        $atributos[$llave] = $valor;
-                        $campos[] = "$llave = ?";
-                        $valores[] = $valor;
+                foreach ($atributosModificados as $llave => $valor) {
+                    if (!array_key_exists($llave, $atributosOriginales)) {
+                        unset($atributos[$llave]);
+                    } else {
+                        if ($atributosModificados[$llave] !== $AtributosIniciales[$llave]) {
+                            $atributos[$llave] = $valor;
+                            $campos[] = "$llave = ?";
+                            $valores[] = $valor;
+                        }
                     }
                 }
-   
+
                 unset($atributos[$this->clase::ID]);
+
+                if (empty($atributos)) {
+                    return $id;
+                }
 
                 $Conn = new Conexion();
                 $pdo = $Conn->getPdo();
@@ -155,17 +183,17 @@ class Model
                 $sql = "update $tabla set $sqlCampos where $sqlReferencia";
                 $stmt = $pdo->prepare($sql);
                 $this->typeElementQuery($atributos, $stmt);
-                $resultado = $stmt->execute();
+                $stmt->execute();
 
-                if ($resultado && $stmt->rowCount() > 0) {
-                    $retorno = $id;
-                } 
-                
-                return $retorno;
-                
+                $errorInfo = $stmt->errorInfo();
+
+                if ($errorInfo[0] !== "00000") {
+                    return "Error al ejecutar la sentencia UPDATE: " . $errorInfo[2];
+                } else {
+                    return $id;
+                }
             }
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage(), 500);
         }
     }
@@ -174,14 +202,14 @@ class Model
     {
         $cont = 1;
         foreach ($atributos as $atributo => &$valor) {
-            if(is_numeric($valor)){
+            if (is_numeric($valor)) {
                 $tipo = PDO::PARAM_INT;
-            }else{
+            } else {
                 $tipo = PDO::PARAM_STR;
             }
 
             $stmt->bindParam($cont, $valor, $tipo);
-            $cont++;   
+            $cont++;
         }
 
         return $stmt;

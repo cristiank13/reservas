@@ -2,21 +2,16 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Reservas</title>
 
-    <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="css/font-awesome.css" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="assets/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -46,29 +41,9 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a id="btnReporte" class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
@@ -79,15 +54,6 @@
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
-                    and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
-                    Pro!</a>
             </div>
 
         </ul>
@@ -181,16 +147,12 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
                 <div id="mainScreen" class="container-fluid">
 
                     <div class="row">
 
                         <div class="col-lg-12">
-
-                            <!-- Overflow Hidden -->
                             <div class="card mb-4">
                                 <form action="Controllers/example_001.php" method="POST" id="formReserva"
                                     target="_blank">
@@ -230,22 +192,22 @@
                                                 class="form-label font-weight-bold text-gray-800">Titulo</label>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="titulo"
-                                                    id="flexRadioDefault1" value="Señor">
-                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    id="titulo1" value="Señor">
+                                                <label class="form-check-label" for="titulo1">
                                                     Señor
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="titulo"
-                                                    id="flexRadioDefault2" value="Señora">
-                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    id="titulo2" value="Señora">
+                                                <label class="form-check-label" for="titulo2">
                                                     Señora
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="titulo"
-                                                    id="flexRadioDefault3" value="">
-                                                <label class="form-check-label" for="flexRadioDefault3">
+                                                    id="titulo3" value="">
+                                                <label class="form-check-label" for="titulo3">
                                                     Sin titulo
                                                 </label>
                                             </div>
@@ -288,29 +250,29 @@
                                                 Habitación</label>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="tipo_habitacion"
-                                                    id="flexRadioDefault1">
-                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    id="Sencilla" value="Sencilla">
+                                                <label class="form-check-label" for="Sencilla">
                                                     Sencilla
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="tipo_habitacion"
-                                                    id="flexRadioDefault2">
-                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    id="Doble" value="Doble">
+                                                <label class="form-check-label" for="Doble">
                                                     Doble
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="tipo_habitacion"
-                                                    id="flexRadioDefault3">
-                                                <label class="form-check-label" for="flexRadioDefault3">
+                                                    id="Triple" value="Triple">
+                                                <label class="form-check-label" for="Triple">
                                                     Triple
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="flexRadioDefault3">
-                                                <label class="form-check-label" for="flexRadioDefault3">
+                                                <input class="form-check-input" type="radio" name="tipo_habitacion"
+                                                    id="Familiar" value="Familiar">
+                                                <label class="form-check-label" for="Familiar">
                                                     Familiar
                                                 </label>
                                             </div>
@@ -333,150 +295,42 @@
                                                 class="form-label font-weight-bold text-gray-800">Tipo de Pago</label>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="tipo_pago"
-                                                    id="flexRadioDefault1">
-                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    id="pago1" value="Pago en Efectivo">
+                                                <label class="form-check-label" for="pago1">
                                                     Pago en Efectivo
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="flexRadioDefault2">
-                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                <input class="form-check-input" type="radio" name="tipo_pago"
+                                                    id="pago2" value="Pago con Tarjeta de Ahorros">
+                                                <label class="form-check-label" for="pago2">
                                                     Pago con Tarjeta de Ahorros
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="flexRadioDefault3">
-                                                <label class="form-check-label" for="flexRadioDefault3">
+                                                <input class="form-check-input" type="radio" name="tipo_pago"
+                                                    id="pago3" value="Pago con Tarjeta de Credito">
+                                                <label class="form-check-label" for="pago3">
                                                     Pago con Tarjeta de Credito
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="hide">
-                                            <input type="text" id="idreserva" class="hide" name="idreserva">
+                                        <div class="d-none">
+                                            <input type="text" id="idreserva" class="form-control d-none" name="idreserva">
                                         </div>
                                         <div class="mb-3">
-                                            <button type="submit" id="btnGenerar"
-                                                class="btn btn-primary">Generar</button>
+                                            <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                                            <button type="submit" id="btnGenerar" class="btn btn-primary">Generar</button>
                                         </div>
 
                                     </div>
                                 </form>
-
-                                <form action="Controllers/example_001.php" method="POST" id="formReserva2"
-                                    target="_blank">
-                                    <div class="mb-3">
-                                        <label for="primer_nombre"
-                                            class="form-label font-weight-bold text-gray-800">Primer
-                                            Nombre</label>
-                                        <input type="text" class="form-control form-input required"
-                                            id="primer_nombre" name="primer_nombre" aria-describedby="emailHelp" required>
-                                    </div>
-
-                                    <label for="nombre">Nombre:</label>
-                                    <input type="text" class="form-control required" id="nombre" name="nombre"
-                                        placeholder="Ingrese su nombre" required>
-                                    <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
-                                    <button type="submit" id="btnGenerar2"
-                                                class="btn btn-primary">Generar</button>
-                                </form>
                             </div>
                         </div>
                     </div>
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Reservas Hoy</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Reservas (Mes)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">87</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Reservas</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-
-                    </div>
-
-
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
 
-            <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -484,48 +338,15 @@
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
     <script src="js/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/index.js"></script>
-
-    <script defer type="text/javascript"
-        src="js/jquery-validation/dist/jquery.validate.js?_=63f7bcf51617e"></script>
+    <script defer type="text/javascript" src="js/jquery-validation/dist/jquery.validate.js?_=63f7bcf51617e"></script>
+    <script src="assets/toastr/toastr.js"></script>
 
 
 </body>
