@@ -13,7 +13,8 @@ const FONT_SIZE_HEAD = '12';
 
 try {
     if (!empty($_POST["idreserva"])) {
-        $params = $_POST;
+        $Reserva = new Reserva($_POST["idreserva"]);
+        $params = $Reserva->atributos;
     } else if (!empty($_REQUEST["idreserva"])) {
         $Reserva = new Reserva($_REQUEST["idreserva"]);
         $params = $Reserva->atributos;
@@ -56,6 +57,8 @@ try {
     $fecha_salida = $params["fecha_salida"];
     $precio = $params["precio"];
     $moneda = $params["moneda"];
+    $anexoHotel = $params["anexo"];
+    $anexoHabitacion = $params["anexo_hab"];
 
     $fi = explode(' ', $fecha_ingreso);
     $fs = explode(' ', $fecha_salida);
@@ -259,12 +262,16 @@ $html = <<<HTML
 
 HTML;
 
-// Image example with resizing
-$pdf->Image('TCPDF/examples/images/habitaciones.jpg', 15, 34, 50, 37, 'JPG', 'http://www.tcpdf.org', '', true, 150, '', false, false, 1, false, false, false);
+if (!empty($anexoHotel)) {
+    $extension = pathinfo($anexoHotel, PATHINFO_EXTENSION);
+    $pdf->Image(__DIR__ . "/" .$anexoHotel, 15, 34, 50, 37, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
+}
 
+if (!empty($anexoHabitacion)) {
+    $extension = pathinfo($anexoHabitacion, PATHINFO_EXTENSION);
+    $pdf->Image(__DIR__ . "/" .$anexoHabitacion, 128, 88, 60, 34, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
+}
 
-
-// Print text using writeHTMLCell()
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
 

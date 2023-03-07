@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card mb-4">
-            <form action="Utilities/crearPDF.php" method="POST" id="formReserva" target="_blank">
+            <form action="Utilities/crearPDF.php" method="POST" enctype="multipart/form-data" id="formReserva" target="_blank">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Formulario de Reserva</h6>
                 </div>
@@ -197,6 +197,23 @@
                         <input type="text" id="cod_reserva" class="form-control d-none" name="cod_reserva">
                         <input type="text" id="idreserva" class="form-control d-none" name="idreserva">
                     </div>
+
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label font-weight-bold text-gray-800 ">Imagen Hotel</label>
+                    </div>
+                    <div class="mb-3 custom-file">
+                        <input type="file" accept="image/*" id="anexo" name="anexo" class="custom-file-input" lang="es">
+                        <label  class="custom-file-label anexo-hotel" for="anexo">Seleccionar Archivo</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label font-weight-bold text-gray-800 ">Imagen Habitación</label>
+                    </div>
+                    <div class="mb-3 custom-file">
+                        <input type="file" accept="image/*" id="anexo_hab" name="anexo_hab" class="custom-file-input" lang="es">
+                        <label  class="custom-file-label anexo-habitacion" for="anexo_hab">Seleccionar Archivo</label>
+                    </div>
+
                     <div class="mb-3">
                         <!--button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button-->
                         <button type="submit" id="btnGenerar" class="btn btn-primary">Generar</button>

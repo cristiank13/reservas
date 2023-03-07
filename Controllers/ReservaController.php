@@ -55,6 +55,18 @@ class ReservaController extends GeneralController
 
     public function actualizar($parametros)
     {
+        if (!empty($_FILES["anexo"]['tmp_name'])) {
+            $nuevaUbicacion = '../assets/img/reservas/' . $_FILES["anexo"]['name'];
+            move_uploaded_file($_FILES["anexo"]['tmp_name'], $nuevaUbicacion);
+            $parametros["anexo"] = $nuevaUbicacion;
+        }
+
+        if (!empty($_FILES["anexo_hab"]['tmp_name'])) {
+            $nuevaUbicacion = '../assets/img/reservas/' . $_FILES["anexo_hab"]['name'];
+            move_uploaded_file($_FILES["anexo_hab"]['tmp_name'], $nuevaUbicacion);
+            $parametros["anexo_hab"] = $nuevaUbicacion;
+        }
+        
         $respuesta = [
             "message" => "No fue posible guardar",
             "success" => "0",

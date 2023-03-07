@@ -41,12 +41,28 @@ $(function () {
             "format": "YYYY-MM-DD HH:mm",
         });
 
+        /*document.querySelector('.custom-file-input').addEventListener('change',function(e){
+            var fileName = document.getElementById("myInput").files[0].name;
+            var nextSibling = e.target.nextElementSibling
+            nextSibling.innerText = fileName
+          })*/
+
         let idreserva = getUrlParameter('idreserva');
 
         if (idreserva) {
             llenarReserva(idreserva);
         }
     }
+
+    $(document).on("change", "#anexo", function (e) {
+        let rutaArchivo = $(this).val();
+        $(".anexo-hotel").text(rutaArchivo);     
+    });
+
+    $(document).on("change", "#anexo_hab", function (e) {
+        let rutaArchivo = $(this).val();
+        $(".anexo-habitacion").text(rutaArchivo);     
+    });
     
     $(document).on("click", "#btnGuardar", function (e) {
         e.preventDefault();
@@ -59,10 +75,7 @@ $(function () {
     $("#formReserva").validate({
         ignore: [],
         submitHandler: function (form) {
-            /*if ($("[name=fecha_ingreso]").val() == $("[name=fecha_salida]").val()) {
-                toastr.error('La fecha de ingreso y salida no pueden ser iguales');
-                return false;
-            }*/
+
             envioFormulario(true);
             return true;
 
@@ -73,27 +86,26 @@ $(function () {
     });
 
     function envioFormulario(continuar) {
-        let data = $("#formReserva").serialize();
+
         let metodo = 'guardar';
+        let formulario = $("#formReserva")[0];
+        let datos = new FormData(formulario);
 
         if ($("#idreserva").val()) {
             metodo = "actualizar";
         }
 
-        data =
-            data +
-            '&' +
-            $.param({
-                metodo: metodo,
-                clase: "ReservaController"
-            });
+        datos.append('metodo', metodo);
+        datos.append('clase', 'ReservaController');
 
         $.ajax({
             url: `Controllers/ControlController.php`,
             async: false,
             type: 'POST',
             dataType: 'json',
-            data,
+            data: datos,
+            contentType: false,
+            processData: false,
             success: response => {
                 if (response.success == 1) {
                     toastr.success(response.message);
@@ -127,6 +139,14 @@ $(function () {
                         let elemento = $(`#${llave}`);
                         if (elemento.hasClass('form-control') || elemento.hasClass('form-control2')) {
                             elemento.val(atributos[llave]);
+                        }
+
+                        if (elemento.hasClass('custom-file-input') && llave == 'anexo') {
+                            $(".anexo-hotel").text(atributos[llave]);
+                        }
+
+                        if (elemento.hasClass('custom-file-input') && llave == 'anexo_hab') {
+                            $(".anexo-habitacion").text(atributos[llave]);
                         }
 
                         elemento = $(`[name=${llave}]`);
