@@ -25,7 +25,7 @@ $(function () {
 
     function init () {
         validarSesion();
-        $('#fecha_inicio').datetimepicker({
+        $('#fecha_inicio_div').datetimepicker({
             "allowInputToggle": true,
             "showClose": true,
             "showClear": true,
@@ -33,7 +33,7 @@ $(function () {
             "format": "YYYY-MM-DD HH:mm",
         });
 
-        $('#fecha_salida').datetimepicker({
+        $('#fecha_salida_div').datetimepicker({
             "allowInputToggle": true,
             "showClose": true,
             "showClear": true,
@@ -125,7 +125,7 @@ $(function () {
 
                     for (let llave in atributos) {
                         let elemento = $(`#${llave}`);
-                        if (elemento.hasClass('form-control')) {
+                        if (elemento.hasClass('form-control') || elemento.hasClass('form-control2')) {
                             elemento.val(atributos[llave]);
                         }
 
