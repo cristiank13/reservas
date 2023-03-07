@@ -70,11 +70,19 @@ $(function () {
                 clase: "LoginController"
             },
             success: response => {
-                console.log(response.success);
                 if (response.success == 0) {
-                    console.log("salir");
                     toastr.error(response.message);
                     top.window.location.href = "login.html";
+                } else {
+                    
+                    $("#spanLogin").text(response.data.login);
+                    
+                    if (response.data.genero == 'f') {
+                        $("#imgLogin").attr('src', 'img/undraw_profile_3.svg');
+                    } else {
+                        $("#imgLogin").attr('src', 'img/undraw_profile_2.svg');
+                    }
+                    
                 }
             }
         });

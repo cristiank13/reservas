@@ -18,12 +18,13 @@ class LoginController extends GeneralController
             session_start();
             $_SESSION["idusuario"] = $resultado[0]['idusuario'];
             $_SESSION["login"] = $resultado[0]['login'];
+            $_SESSION["genero"] = $resultado[0]['genero'];
 
             $respuesta['message'] = "Bienvenido";
             $respuesta['success'] = 1;
             $respuesta['data'] = [
                 'idusuario' => $resultado[0]['idusuario'],
-                'login' => $resultado[0]['login'] 
+                'login' => $resultado[0]['login']
             ];
         }
 
@@ -43,7 +44,12 @@ class LoginController extends GeneralController
             session_destroy();
         } else {
             $respuesta["message"] = "Sesión activa";
-            $respuesta["success"] = 1;      
+            $respuesta["success"] = 1;
+            $respuesta['data'] = [
+                'idusuario' => $_SESSION['idusuario'],
+                'login' => $_SESSION['login'],
+                'genero' => $_SESSION['genero']
+            ];
         }
 
         return json_encode($respuesta);
