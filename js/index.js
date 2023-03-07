@@ -28,10 +28,13 @@ $(function () {
     }
 
     $(document).on("click", "#btnReporte", function (e) {
+        $("#mainScreen").attr("data-src", '');
         $("#mainScreen").attr("src", `reporteReserva.html`);
+        
     });
 
     $(document).on("click", "#btnCrearReserva", function (e) {
+        $("#mainScreen").attr("data-src", '');
         $("#mainScreen").attr("src", `reserva.html`);
     });
 

@@ -27,30 +27,30 @@
                         <label for="primer_nombre" class="form-label font-weight-bold text-gray-800 required">Primer
                             Nombre</label>
                         <input type="text" class="form-control form-input required" required id="primer_nombre"
-                            name="primer_nombre" aria-describedby="emailHelp">
+                            name="primer_nombre" required>
                     </div>
                     <div class="mb-3">
-                        <label for="segundo_nombre" class="form-label font-weight-bold text-gray-800">Segundo
+                        <label for="segundo_nombre" class="form-label font-weight-bold text-gray-800 required">Segundo
                             Nombre</label>
                         <input type="text" class="form-control" id="segundo_nombre" name="segundo_nombre"
-                            aria-describedby="emailHelp">
+                            required>
                     </div>
                     <div class="mb-3">
-                        <label for="primer_apellido" class="form-label font-weight-bold text-gray-800">Primer
+                        <label for="primer_apellido" class="form-label font-weight-bold text-gray-800 required">Primer
                             Apellido</label>
                         <input type="text" class="form-control" id="primer_apellido" name="primer_apellido"
-                            aria-describedby="emailHelp">
+                            required>
                     </div>
                     <div class="mb-3">
-                        <label for="segundo_apellido" class="form-label font-weight-bold text-gray-800">Segundo
+                        <label for="segundo_apellido" class="form-label font-weight-bold text-gray-800 required">Segundo
                             Apellido</label>
                         <input type="text" class="form-control" id="segundo_apellido" name="segundo_apellido"
-                            aria-describedby="emailHelp">
+                            required>
                     </div>
                     <div class="mb-3">
-                        <label for="titulo" class="form-label font-weight-bold text-gray-800">Titulo</label>
+                        <label for="titulo" class="form-label font-weight-bold text-gray-800 required">Titulo</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="titulo" id="titulo1" value="Señor">
+                            <input class="form-check-input" type="radio" name="titulo" id="titulo1" value="Señor" required>
                             <label class="form-check-label" for="titulo1">
                                 Señor
                             </label>
@@ -69,26 +69,22 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label font-weight-bold text-gray-800">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="direccion" class="form-label font-weight-bold text-gray-800">Dirección</label>
-                        <input type="text" class="form-control" id="direccion" name="direccion"
-                            aria-describedby="emailHelp">
+                        <label for="email" class="form-label font-weight-bold text-gray-800 required">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
 
-
+                    <hr>
                     <div class="mb-3">
-                        <label for="telefono" class="form-label font-weight-bold text-gray-800">Telefono</label>
-                        <input type="text" class="form-control" id="telefono" name="telefono"
-                            aria-describedby="emailHelp">
+                        <label for="nombre_hotel" class="form-label font-weight-bold text-gray-800 required">Nombre del
+                            Hotel</label>
+                        <input type="text" class="form-control" id="nombre_hotel" name="nombre_hotel"
+                            required>
                     </div>
-                    
+
                     <div class="mb-3"> 
                         <label for="fecha_inicio" class="form-label font-weight-bold text-gray-800 required">Fecha Ingreso</label>
                         <div class="input-group date" id="fecha_inicio">
-                            <input name="fecha_ingreso" type="text" value="2023-10-21 11:30" class="" required/>
+                            <input name="fecha_ingreso" type="text" value="" class="" required/>
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                             </span>
@@ -98,7 +94,7 @@
                     <div class="mb-3">
                         <label for="fecha_salida" class="form-label font-weight-bold text-gray-800 required">Fecha Salida</label>
                         <div class="input-group date" id="fecha_salida">
-                            <input name="fecha_salida" type="text" value="2023-10-21 11:30" class="" required/>
+                            <input name="fecha_salida" type="text" value="" class="" required/>
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                             </span>
@@ -107,25 +103,29 @@
 
 
                     <div class="mb-3">
-                        <label for="nombre_hotel" class="form-label font-weight-bold text-gray-800">Nombre del
-                            Hotel</label>
-                        <input type="text" class="form-control" id="nombre_hotel" name="nombre_hotel"
-                            aria-describedby="emailHelp">
+                        <label for="direccion" class="form-label font-weight-bold text-gray-800 required">Dirección</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="nombre_habitacion" class="form-label font-weight-bold text-gray-800">Nombre de
+                        <label for="telefono" class="form-label font-weight-bold text-gray-800 required">Telefono</label>
+                        <input type="text" class="form-control" id="telefono" name="telefono" required>
+                    </div>
+                    
+
+                    <div class="mb-3">
+                        <label for="nombre_habitacion" class="form-label font-weight-bold text-gray-800 required">Nombre de
                             la
                             Habitación</label>
                         <input type="text" class="form-control" id="nombre_habitacion" name="nombre_habitacion"
-                            aria-describedby="emailHelp">
+                            required>
                     </div>
                     <div class="mb-3">
-                        <label for="tipo_habitacion" class="form-label font-weight-bold text-gray-800">Tipo de
+                        <label for="tipo_habitacion" class="form-label font-weight-bold text-gray-800 required">Tipo de
                             Habitación</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="tipo_habitacion" id="Sencilla"
-                                value="Sencilla">
+                                value="Sencilla" required>
                             <label class="form-check-label" for="Sencilla">
                                 Sencilla
                             </label>
@@ -153,25 +153,25 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="precio" class="form-label font-weight-bold text-gray-800">Precio</label>
-                        <input type="text" class="form-control" id="precio" name="precio">
+                        <label for="precio" class="form-label font-weight-bold text-gray-800 required">Precio</label>
+                        <input type="text" class="form-control" id="precio" name="precio" required>
                     </div>
                     <div class="mb-3">
-                        <label for="moneda" class="form-label font-weight-bold text-gray-800">Moneda</label>
-                        <input type="text" class="form-control" id="moneda" name="moneda">
+                        <label for="moneda" class="form-label font-weight-bold text-gray-800 required">Moneda</label>
+                        <input type="text" class="form-control" id="moneda" name="moneda" required>
                     </div>
                     <div class="mb-3">
-                        <label for="ciudad" class="form-label font-weight-bold text-gray-800">Ciudad</label>
-                        <input type="text" class="form-control" id="ciudad" name="ciudad">
+                        <label for="ciudad" class="form-label font-weight-bold text-gray-800 required">Ciudad</label>
+                        <input type="text" class="form-control" id="ciudad" name="ciudad" required>
                     </div>
                     <div class="mb-3">
-                        <label for="huespedes" class="form-label font-weight-bold text-gray-800">Cantidad de
+                        <label for="huespedes" class="form-label font-weight-bold text-gray-800 required">Cantidad de
                             Huespedes</label>
                         <input type="number" min="1" class="form-control" id="huespedes" name="huespedes"
-                            aria-describedby="emailHelp">
+                            required>
                     </div>
                     <div class="mb-3">
-                        <label for="tipo_pago" class="form-label font-weight-bold text-gray-800">Tipo de
+                        <label for="tipo_pago" class="form-label font-weight-bold text-gray-800 required">Tipo de
                             Pago</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="tipo_pago" id="pago1"
@@ -200,7 +200,7 @@
                         <input type="text" id="idreserva" class="form-control d-none" name="idreserva">
                     </div>
                     <div class="mb-3">
-                        <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                        <!--button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button-->
                         <button type="submit" id="btnGenerar" class="btn btn-primary">Generar</button>
                     </div>
 

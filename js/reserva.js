@@ -50,7 +50,8 @@ $(function () {
     
     $(document).on("click", "#btnGuardar", function (e) {
         e.preventDefault();
-        envioFormulario();
+        envioFormulario(false);
+        
     });
 
 
@@ -58,7 +59,11 @@ $(function () {
     $("#formReserva").validate({
         ignore: [],
         submitHandler: function (form) {
-            envioFormulario();
+            /*if ($("[name=fecha_ingreso]").val() == $("[name=fecha_salida]").val()) {
+                toastr.error('La fecha de ingreso y salida no pueden ser iguales');
+                return false;
+            }*/
+            envioFormulario(true);
             return true;
 
         },
@@ -67,7 +72,7 @@ $(function () {
         }
     });
 
-    function envioFormulario() {
+    function envioFormulario(continuar) {
         let data = $("#formReserva").serialize();
         let metodo = 'guardar';
 
@@ -93,8 +98,10 @@ $(function () {
                 if (response.success == 1) {
                     toastr.success(response.message);
                     $("#idreserva").val(response.data);
+                    return continuar;
                 } else {
                     toastr.error(response.message);
+                    return continuar;
                 }
             }
         });
@@ -146,9 +153,7 @@ $(function () {
                 clase: "LoginController"
             },
             success: response => {
-                console.log(response.success);
                 if (response.success == 0) {
-                    console.log("salir");
                     toastr.error(response.message);
                     top.window.location.href = "login.html";
                 }
