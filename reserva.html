@@ -12,12 +12,13 @@
     <link href="css/font-awesome.css" rel="stylesheet">
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <link href="assets/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
-
+    <link href="Utilities/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" type="text/css" media="all" rel="stylesheet" />
+ 
 </head>
 <div class="row">
     <div class="col-lg-12">
         <div class="card mb-4">
-            <form action="Controllers/example_001.php" method="POST" id="formReserva" target="_blank">
+            <form action="Utilities/crearPDF.php" method="POST" id="formReserva" target="_blank">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Formulario de Reserva</h6>
                 </div>
@@ -76,17 +77,42 @@
                         <input type="text" class="form-control" id="direccion" name="direccion"
                             aria-describedby="emailHelp">
                     </div>
+
+
                     <div class="mb-3">
                         <label for="telefono" class="form-label font-weight-bold text-gray-800">Telefono</label>
                         <input type="text" class="form-control" id="telefono" name="telefono"
                             aria-describedby="emailHelp">
                     </div>
+                    
+                    <div class="mb-3"> 
+                        <label for="fecha_inicio" class="form-label font-weight-bold text-gray-800 required">Fecha Ingreso</label>
+                        <div class="input-group date" id="fecha_inicio">
+                            <input name="fecha_ingreso" type="text" value="2023-10-21 11:30" class="" required/>
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fecha_salida" class="form-label font-weight-bold text-gray-800 required">Fecha Salida</label>
+                        <div class="input-group date" id="fecha_salida">
+                            <input name="fecha_salida" type="text" value="2023-10-21 11:30" class="" required/>
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+
+
                     <div class="mb-3">
                         <label for="nombre_hotel" class="form-label font-weight-bold text-gray-800">Nombre del
                             Hotel</label>
                         <input type="text" class="form-control" id="nombre_hotel" name="nombre_hotel"
                             aria-describedby="emailHelp">
                     </div>
+
                     <div class="mb-3">
                         <label for="nombre_habitacion" class="form-label font-weight-bold text-gray-800">Nombre de
                             la
@@ -127,8 +153,16 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <label for="precio" class="form-label font-weight-bold text-gray-800">Precio</label>
+                        <input type="text" class="form-control" id="precio" name="precio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="moneda" class="form-label font-weight-bold text-gray-800">Moneda</label>
+                        <input type="text" class="form-control" id="moneda" name="moneda">
+                    </div>
+                    <div class="mb-3">
                         <label for="ciudad" class="form-label font-weight-bold text-gray-800">Ciudad</label>
-                        <input type="text" class="form-control" id="ciudad" name="ciudad" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" id="ciudad" name="ciudad">
                     </div>
                     <div class="mb-3">
                         <label for="huespedes" class="form-label font-weight-bold text-gray-800">Cantidad de
@@ -162,6 +196,7 @@
                         </div>
                     </div>
                     <div class="d-none">
+                        <input type="text" id="cod_reserva" class="form-control d-none" name="cod_reserva">
                         <input type="text" id="idreserva" class="form-control d-none" name="idreserva">
                     </div>
                     <div class="mb-3">
@@ -180,8 +215,11 @@
 <script src="js/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="js/sb-admin-2.min.js"></script>
-<script src="js/index.js"></script>
+<script src="js/reserva.js"></script>
 <script defer type="text/javascript" src="js/jquery-validation/dist/jquery.validate.js?_=63f7bcf51617e"></script>
 <script src="assets/toastr/toastr.js"></script>
+<script src="js/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="Utilities/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
 
 </html>

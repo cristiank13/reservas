@@ -1,112 +1,77 @@
 $(function () {
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var main = top.$("#mainScreen").attr('data-src');
+        if (main === undefined || main == '') {
+            return false;
+        } else {
+            var param = main.split('?');
+            var sURLVariables = param[1].split('&'),
+                sParameterName,
+                i;
 
-    var queryString = window.location.search;
-    var params = {};
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
 
-    // Obtener la URL de la página actual
-    var url = window.location.href;
-    console.log(url);
-
-
-    console.log(queryString);
-    queryString = queryString.substring(1);
-
-    
-    queryString.split("&").forEach(function(part) {
-        let item = part.split("=");
-        params[item[0]] = decodeURIComponent(item[1]);
-    });
-
-    //console.log(params);
-    
-    llenarReserva(8);
-
-
-    $(document).on("click", "#btnGuardar", function (e) {
-        e.preventDefault();
-        envioFormulario();
-    });
-
-    $(document).on("click", "#btnReporte", function (e) {
-        $("#mainScreen").load(`reporteReserva.html`);
-    });
-
-    //Se activa con el boton btnGenerar
-    $("#formReserva").validate({
-        ignore: [],
-        submitHandler: function (form) {
-            envioFormulario();
-            return true;
-
-        },
-        invalidHandler: function () {
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
             return false;
         }
+    };
+
+    init ();
+
+
+    function init () {
+        validarSesion();
+    }
+
+    $(document).on("click", "#btnReporte", function (e) {
+        $("#mainScreen").attr("src", `reporteReserva.html`);
     });
 
-    function envioFormulario() {
-        let data = $("#formReserva").serialize();
-        let metodo = 'guardar';
+    $(document).on("click", "#btnCrearReserva", function (e) {
+        $("#mainScreen").attr("src", `reserva.html`);
+    });
 
-        if ($("#idreserva").val()) {
-            metodo = "actualizar";
-        }
-
-        data =
-            data +
-            '&' +
-            $.param({
-                metodo: metodo,
-                clase: "ReservaController"
-            });
-
+    $(document).on("click", "#btnSalir", function (e) {
         $.ajax({
             url: `Controllers/ControlController.php`,
             async: false,
             type: 'POST',
             dataType: 'json',
-            data,
+            data: {
+                metodo: 'cerrarSesion',
+                clase: "LoginController"
+            },
             success: response => {
-                if (response.success == 1) {
-                    toastr.success(response.message);
-                    $("#idreserva").val(response.data);
-                } else {
+                if (response.success) {
                     toastr.error(response.message);
+                    top.window.location.href = "login.html";
                 }
             }
         });
-    }
+    });
 
 
-    function llenarReserva(idreserva) {
+
+    function validarSesion() {
         $.ajax({
             url: `Controllers/ControlController.php`,
             async: false,
-            type: 'GET',
+            type: 'POST',
             dataType: 'json',
             data: {
-                metodo: 'cargar',
-                clase: "ReservaController",
-                idreserva
+                metodo: 'validarSesionActiva',
+                clase: "LoginController"
             },
             success: response => {
-                if (response.success == 1) {
-                    let atributos = response.data;
-
-                    for (let llave in atributos) {
-                        let elemento = $(`#${llave}`);
-                        if (elemento.hasClass('form-control')) {
-                            elemento.val(atributos[llave]);
-                        }
-
-                        elemento = $(`[name=${llave}]`);
-
-                        if (elemento.hasClass('form-check-input')) {
-                            $(`input[type="radio"][name="${llave}"]`).filter(function () {
-                                return $(this).next().text().trim() === atributos[llave];
-                            }).prop('checked', true);
-                        }
-                    }
+                console.log(response.success);
+                if (response.success == 0) {
+                    console.log("salir");
+                    toastr.error(response.message);
+                    top.window.location.href = "login.html";
                 }
             }
         });

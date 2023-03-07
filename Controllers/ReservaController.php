@@ -27,6 +27,25 @@ class ReservaController extends GeneralController
             $respuesta["message"] = "Proceso exitos";
             $respuesta["success"] = 1;
             $respuesta["data"] = $id;
+
+            $Reserva = new Reserva($id);
+
+            $cadena = '';
+            if (strlen($id) == 1) {
+                $cadena = "000$id";
+            } else if (strlen($id) == 2) {
+                $cadena = "00$id";
+            }else if (strlen($id) == 3) {
+                $cadena = "0$id";
+            }else if (strlen($id) == 4) {
+                $cadena = $id;
+            }
+
+            $Reserva->setatributos([
+                'cod_reserva' => "STY$cadena"
+            ]);
+            $Reserva->update();
+
         } else {
             $respuesta["message"] = "Se presento un error al momento de guardar";
         }

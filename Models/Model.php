@@ -122,7 +122,7 @@ class Model
 
                 $sql = "INSERT INTO $tabla ($sqlCampos) VALUES ($sqlReferencia)";
                 $stmt = $pdo->prepare($sql);
-                $this->typeElementQuery($atributos, $stmt);
+                self::typeElementQuery($atributos, $stmt);
 
                 $stmt->execute();
 
@@ -182,7 +182,7 @@ class Model
 
                 $sql = "update $tabla set $sqlCampos where $sqlReferencia";
                 $stmt = $pdo->prepare($sql);
-                $this->typeElementQuery($atributos, $stmt);
+                self::typeElementQuery($atributos, $stmt);
                 $stmt->execute();
 
                 $errorInfo = $stmt->errorInfo();
@@ -198,7 +198,7 @@ class Model
         }
     }
 
-    public function typeElementQuery(array $atributos, $stmt)
+    public static function typeElementQuery(array $atributos, $stmt)
     {
         $cont = 1;
         foreach ($atributos as $atributo => &$valor) {
@@ -213,5 +213,23 @@ class Model
         }
 
         return $stmt;
+    }
+
+    public static function sqlConsultar (array $condicion) {
+        $clase = get_called_class();
+        $tabla = $clase::TABLA;
+
+        $Conn = new Conexion();
+        $pdo = $Conn->getPdo();
+
+        $camposCondicion = implode('=? and ', array_keys($condicion));
+        $stmt = $pdo->prepare("SELECT * FROM $tabla where $camposCondicion=?");
+        self::typeElementQuery($condicion, $stmt);
+        $stmt->execute();
+  
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultados;
+
     }
 }

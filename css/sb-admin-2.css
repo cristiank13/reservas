@@ -10969,7 +10969,13 @@ form.user .btn-user {
 }
 
 .error {
-  color: #d31111;
+    color: #d31111;
+    position: relative;
+    line-height: 1;
+}
+
+.formLogin .error {
+  color: white;
   position: relative;
   line-height: 1;
 }
