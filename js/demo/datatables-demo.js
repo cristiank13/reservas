@@ -26,7 +26,6 @@ $(function () {
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm mb-2 accion" data-id="${fila['idreserva']}" data-tipo="editar">Editar</button><br>
                                 <a href="Utilities/crearPDF.php?idreserva=${fila['idreserva']}" target="_blank" class="btn btn-primary btn-sm mb-2" data-id="${fila['idreserva']}" data-tipo="generar">Generar</a><br>
-                                <button type="button" class="btn btn-primary btn-sm mb-2 accion" data-id="${fila['idreserva']}" data-tipo="correo">Correo</button>
                             </td>
                         </tr>
                     `);
