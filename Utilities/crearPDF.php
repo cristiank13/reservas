@@ -159,16 +159,16 @@ $html = <<<HTML
 
 <table boder="0">
     <tr>
-        <td style="height: 9mm;" width="30%"></td>
-        <td style="height: 9mm;" width="70%"><strong>$nombreHotel</strong></td>
+        <td style="height: 9mm;" width="35%"></td>
+        <td style="height: 9mm;" width="65%"><strong>$nombreHotel</strong></td>
     </tr>
     <tr>
-        <td style="height: 6mm;" width="30%"></td>
-        <td style="height: 6mm;" width="70%"><strong>Dirección:</strong> $direccion</td>
+        <td style="height: 6mm;" width="35%"></td>
+        <td style="height: 6mm;" width="65%"><strong>Dirección:</strong> $direccion</td>
     </tr>
     <tr>
-        <td style="height: 6mm;" width="30%"></td>
-        <td style="height: 6mm;" width="70%"><strong>Entrada:</strong> $fecha_ingreso</td>
+        <td style="height: 6mm;" width="35%"></td>
+        <td style="height: 6mm;" width="65%"><strong>Entrada:</strong> $fecha_ingreso</td>
     </tr>
     <tr>
         <td style="height: 6mm;"></td>
@@ -232,7 +232,7 @@ $html = <<<HTML
         <td style="border: 1px solid #b4b7ae; text-align: right;">-</td>
     </tr>
     <tr>
-        <td colspan="3" style="border: 1px solid #b4b7ae; height: 2mm;"><hr></td>
+        <td colspan="3" style="border: 1px solid #b4b7ae; height: 2mm;"></td>
     </tr>
     <tr>
         <td style="border: 1px solid #b4b7ae; height: 7mm;">Total</td>
@@ -264,7 +264,7 @@ HTML;
 
 if (!empty($anexoHotel)) {
     $extension = pathinfo($anexoHotel, PATHINFO_EXTENSION);
-    $pdf->Image(__DIR__ . "/" .$anexoHotel, 15, 34, 50, 37, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
+    $pdf->Image(__DIR__ . "/" .$anexoHotel, 15, 34, 60, 37, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
 }
 
 if (!empty($anexoHabitacion)) {
