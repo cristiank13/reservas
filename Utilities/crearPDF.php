@@ -10,13 +10,8 @@ const PDF_AGENCIA = '../../../../assets/img/pdf/tcpdf_logo.jpg';
 const FONT_NAME_HEAD = 'helvetica';
 
 const FONT_SIZE_HEAD = '12';
-print_r(__DIR__);
+
 try {
-
-    if (!empty($_POST["prueba"])) {
-        print_r(__DIR__);
-    }
-
     if (!empty($_POST["idreserva"])) {
         $Reserva = new Reserva($_POST["idreserva"]);
         $params = $Reserva->atributos;

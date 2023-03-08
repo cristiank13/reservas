@@ -56,13 +56,13 @@ class ReservaController extends GeneralController
     public function actualizar($parametros)
     {
         if (!empty($_FILES["anexo"]['tmp_name'])) {
-            $nuevaUbicacion = '../assets/img/reservas/' . $_FILES["anexo"]['name'];
+            $nuevaUbicacion = 'https://viajes-mafara.com/reservas/assets/img/reservas/' . $_FILES["anexo"]['name'];
             move_uploaded_file($_FILES["anexo"]['tmp_name'], $nuevaUbicacion);
             $parametros["anexo"] = $nuevaUbicacion;
         }
 
         if (!empty($_FILES["anexo_hab"]['tmp_name'])) {
-            $nuevaUbicacion = '../assets/img/reservas/' . $_FILES["anexo_hab"]['name'];
+            $nuevaUbicacion = 'https://viajes-mafara.com/reservas/assets/img/reservas/' . $_FILES["anexo_hab"]['name'];
             move_uploaded_file($_FILES["anexo_hab"]['tmp_name'], $nuevaUbicacion);
             $parametros["anexo_hab"] = $nuevaUbicacion;
         }
