@@ -264,12 +264,12 @@ HTML;
 
 if (!empty($anexoHotel)) {
     $extension = pathinfo($anexoHotel, PATHINFO_EXTENSION);
-    $pdf->Image(__DIR__ . "/" .$anexoHotel, 15, 34, 60, 37, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
+    $pdf->Image($anexoHotel, 15, 34, 60, 37, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
 }
 
 if (!empty($anexoHabitacion)) {
     $extension = pathinfo($anexoHabitacion, PATHINFO_EXTENSION);
-    $pdf->Image(__DIR__ . "/" .$anexoHabitacion, 128, 88, 60, 34, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
+    $pdf->Image($anexoHabitacion, 128, 88, 60, 34, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
 }
 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
