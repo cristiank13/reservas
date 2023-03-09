@@ -83,6 +83,7 @@ try {
     die();
 }
 
+
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -262,14 +263,18 @@ $html = <<<HTML
 
 HTML;
 
+$pdf->Image("https://viajes-mafara.com/reservas/assets/img/pdf/tcpdf_logo.jpg", 15, 2, 45, 12, 'jpg', null, '', true, 150, '', false, false, false, false, false, false);
+
+
 if (!empty($anexoHotel)) {
     $extension = pathinfo($anexoHotel, PATHINFO_EXTENSION);
-    $pdf->Image($anexoHotel, 15, 34, 60, 37, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
+    $pdf->Image("https://viajes-mafara.com/reservas/assets/" . $anexoHotel, 15, 34, 60, 37, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
 }
+
 
 if (!empty($anexoHabitacion)) {
     $extension = pathinfo($anexoHabitacion, PATHINFO_EXTENSION);
-    $pdf->Image($anexoHabitacion, 128, 88, 60, 34, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
+    $pdf->Image("https://viajes-mafara.com/reservas/assets/" .$anexoHabitacion, 128, 88, 60, 34, $extension, null, '', true, 150, '', false, false, 1, false, false, false);
 }
 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
