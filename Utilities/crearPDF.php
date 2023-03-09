@@ -169,11 +169,11 @@ $html = <<<HTML
     </tr>
     <tr>
         <td style="height: 6mm;" width="35%"></td>
-        <td style="height: 6mm;" width="65%"><strong>Entrada:</strong> $fecha_ingreso</td>
+        <td style="height: 6mm;" width="65%"><strong>Check-in:</strong> $fecha_ingreso</td>
     </tr>
     <tr>
         <td style="height: 6mm;"></td>
-        <td><strong>Salida:</strong>&nbsp;    &nbsp;  $fecha_salida</td>
+        <td><strong>Check-out:</strong>&nbsp;    &nbsp;  $fecha_salida</td>
     </tr>
     <tr>
         <td style="height: 6mm;"></td>
