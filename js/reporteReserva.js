@@ -31,7 +31,12 @@ $(function () {
                     `);
                 });
 
-                $('#dataTable').DataTable();
+                $('#dataTable').DataTable({
+                    language: {
+                        url: 'Utilities/es-ES.json'
+                    },
+                });
+
 
             }
         }
