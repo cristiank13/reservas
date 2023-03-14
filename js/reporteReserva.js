@@ -41,10 +41,7 @@ $(function () {
         let id = $(this).data('id');
         let tipo = $(this).data('tipo');
 
-        console.log(id, tipo);
-
         if (tipo == 'editar') {
-            console.log("entra");
             top.$("#mainScreen").attr('data-src', `reserva.html?idreserva=${id}`);
             top.$("#mainScreen").attr("src", `reserva.html?idreserva=${id}`);
         } else if (tipo == 'correo') {
@@ -54,9 +51,10 @@ $(function () {
     });
 
     function enviarCorreo(id) {
+        toastr.warning("Espere mientras se envia el correo...");
+
         $.ajax({
             url: `Controllers/ControlController.php`,
-            async: false,
             type: 'GET',
             dataType: 'json',
             data: {
@@ -66,8 +64,9 @@ $(function () {
             },
             success: response => {
                 if (response.success) {
-                    
-    
+                    toastr.success(response.message);
+                } else {
+                    toastr.error("No fue posible enviar el correo");
                 }
             }
         });

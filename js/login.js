@@ -22,7 +22,6 @@ $(function () {
                 dataType: 'json',
                 data,
                 success: response => {
-                    console.log(response);
                     if (response.success == 1) {
                         toastr.success(response.message);
                         $("#idreserva").val(response.data); 
