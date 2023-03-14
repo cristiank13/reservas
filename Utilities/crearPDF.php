@@ -173,7 +173,7 @@ $html = <<<HTML
     </tr>
     <tr>
         <td style="height: 6mm;"></td>
-        <td><strong>Check-out:</strong>&nbsp;    &nbsp;  $fecha_salida</td>
+        <td><strong>Check-out:</strong>&nbsp;$fecha_salida</td>
     </tr>
     <tr>
         <td style="height: 6mm;"></td>

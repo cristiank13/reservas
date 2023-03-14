@@ -27,6 +27,7 @@ switch ($request_method) {
 
 
 if (!empty($parametros["metodo"]) && !empty($parametros["clase"])) {
+
     local_autoload('GeneralController');
     local_autoload($parametros["clase"]);
     
