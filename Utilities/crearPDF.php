@@ -15,6 +15,7 @@ try {
     if (!empty($_POST["idreserva"])) {
         $Reserva = new Reserva($_POST["idreserva"]);
         $params = $Reserva->atributos;
+
     } else if (!empty($_REQUEST["idreserva"])) {
         $Reserva = new Reserva($_REQUEST["idreserva"]);
         $params = $Reserva->atributos;
@@ -44,6 +45,7 @@ try {
     }
 
     $codReserva = $params["cod_reserva"];
+
     $titulo = $params["titulo"];
     $ciudad = $params["ciudad"];
     $direccion = $params["direccion"];

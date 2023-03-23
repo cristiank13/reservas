@@ -110,6 +110,7 @@ $(function () {
                 if (response.success == 1) {
                     toastr.success(response.message);
                     $("#idreserva").val(response.data);
+                    $("#cod_reserva").val(response.cod);
                     return continuar;
                 } else {
                     toastr.error(response.message);

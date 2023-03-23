@@ -18,6 +18,18 @@ class ReservaController extends GeneralController
             return json_encode($parametros);
         }
 
+        if (!empty($_FILES["anexo"]['tmp_name'])) {
+            $nuevaUbicacion = '../assets/img/reservas/' . $_FILES["anexo"]['name'];
+            move_uploaded_file($_FILES["anexo"]['tmp_name'], $nuevaUbicacion);
+            $parametros["anexo"] = $nuevaUbicacion;
+        }
+
+        if (!empty($_FILES["anexo_hab"]['tmp_name'])) {
+            $nuevaUbicacion = '../assets/img/reservas/' . $_FILES["anexo_hab"]['name'];
+            move_uploaded_file($_FILES["anexo_hab"]['tmp_name'], $nuevaUbicacion);
+            $parametros["anexo_hab"] = $nuevaUbicacion;
+        }
+
         $Reserva = new Reserva();
         $Reserva->setatributos(
             $parametros
@@ -45,6 +57,8 @@ class ReservaController extends GeneralController
                 'cod_reserva' => "STY$cadena"
             ]);
             $Reserva2->update();
+
+            $respuesta["cod"] = "STY$cadena";
         } else {
             $respuesta["message"] = "Se presento un error al momento de guardar";
         }
@@ -81,11 +95,12 @@ class ReservaController extends GeneralController
         $Reserva->setatributos(
             $parametros
         );
-
+        
         if ($id = $Reserva->update()) {
             $respuesta["message"] = "Proceso exitoso";
             $respuesta["success"] = 1;
             $respuesta["data"] = $id;
+            $respuesta["cod"] = $Reserva->atributos['cod_reserva'];
         } else {
             $respuesta["message"] = "Se presento un error al momento de actualizar";
         }
